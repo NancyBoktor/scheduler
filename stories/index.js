@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "index.scss";
@@ -7,6 +7,15 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+import Appointment from "components/Appointment/index.js";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
+import Interviewers from "components/data/InterviewersData";
 
 /* ---------> Test the Buttons <----------- */
 storiesOf("Button", module)
@@ -119,12 +128,82 @@ storiesOf("InterviewerList", module)
   })
   .add("Initial", () => <InterviewerList interviewers={interviewers} />)
   .add("Selected", () => (
-    <InterviewerList interviewers={interviewers} interviewer={3} />
+    <InterviewerList interviewers={interviewers} value={3} />
   ))
   .add("Clickable", () => (
-    <InterviewerListItem
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={() => action("setInterviewer")(interviewer.id)}
+    <InterviewerList
+      interviewers={interviewers}
+      onChange={action("setInterviewer")}
     />
+  ));
+
+/* ---------> Test the Appointment component <----------- */
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }],
+  })
+  .add("Appointment", () => <Appointment />)
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
+  //---------> Test the Header component
+  .add("Header", () => <Header time="12pm" />)
+  //--------->Test the Empty component
+  .add("Empty", () => <Empty onAdd={action("onAdd ")} />)
+  //---------> Test the Show component
+  .add("Show", () => (
+    <Show
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+      student="Lydia Miller-Jones"
+      interviewer="Sylvia Palmer"
+    />
+  ))
+  //---------> Test the Confirm component
+  .add("Confirm", () => (
+    <Confirm
+      onCancel={action("onCancel")}
+      onConfirm={action("onConfirm")}
+      message="Delete the appointment?"
+    />
+  ))
+  //---------> Test the Status component
+  .add("Status", () => <Status deleting="Deleting" />)
+  //---------> Test the Status component
+  .add("Error", () => (
+    <Error
+      message="Could not delete appointment."
+      onClose={action("onClose")}
+    />
+  ))
+  //---------> Test the Form component
+  .add("Create Form", () => (
+    <Form
+      interviewers={Interviewers}
+      onSave={action()}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Edit Form", () => (
+    <Form
+      student="fff"
+      interviewer={2}
+      interviewers={Interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
   ));

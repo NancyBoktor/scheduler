@@ -12,6 +12,7 @@ const InterviewerListItem = (props) => {
       onClick={() => {
         props.setInterviewer();
       }}
+      selected={props.selected}
     >
       <img
         className="interviewers__item-image"
