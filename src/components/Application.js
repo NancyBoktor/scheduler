@@ -5,7 +5,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 //import { data } from "autoprefixer";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 /* -----------> App function <------------*/
 export default function Application(props) {
@@ -15,9 +15,22 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {},
   });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  const scadule = dailyAppointments.map((app) => {
+    const interview = getInterview(state, app.interview);
+    return (
+      <Appointment
+        key={app.id}
+        id={app.id}
+        time={app.time}
+        interview={interview}
+        interviewers={state.interviewers}
+      />
+    );
+  });
   //console.log("daily", dailyAppointments);
 
   const setDay = (day) => setState({ ...state, day });
@@ -76,9 +89,7 @@ export default function Application(props) {
       </section>
 
       <section className="schedule">
-        {dailyAppointments.map((app) => (
-          <Appointment key={app.id} {...app} />
-        ))}
+        {scadule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
