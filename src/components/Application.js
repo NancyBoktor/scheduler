@@ -4,8 +4,12 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-//import { data } from "autoprefixer";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 
 /* -----------> App function <------------*/
 export default function Application(props) {
@@ -14,9 +18,36 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {},
+    appointments: {
+      1: {
+        id: 1,
+        time: "12pm",
+        interview: null,
+      },
+    },
     interviewers: {},
   });
+
+  const bookInterview = (id, interview) => {
+    // console.log("Id", id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios.put(`/api/appointments/${id}`, { interview }).then((res) => {
+      setState({
+        ...state,
+        appointments,
+      });
+      console.log("resAxios", res);
+    });
+  };
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const scadule = dailyAppointments.map((app) => {
@@ -27,7 +58,8 @@ export default function Application(props) {
         id={app.id}
         time={app.time}
         interview={interview}
-        interviewers={state.interviewers}
+        interviewers={getInterviewersForDay(state, state.day)}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -35,6 +67,7 @@ export default function Application(props) {
 
   const setDay = (day) => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }))
+
   useEffect(() => {
     axios
       .all([
@@ -44,7 +77,7 @@ export default function Application(props) {
       ])
 
       .then((resArr) => {
-        console.log("res", resArr);
+        // console.log("res", resArr);
         setIsLoading(false);
         // setState((state.days = resArr[0].data));
         // setState((state.appointments = resArr[1].data));

@@ -8,7 +8,7 @@ export default function Status(Props) {
         src="images/status.png"
         alt="Loading"
       />
-      <h1 className="text--semi-bold">{Props.deleting}</h1>
+      <h1 className="text--semi-bold">{Props.message}</h1>
     </main>
   );
 }
