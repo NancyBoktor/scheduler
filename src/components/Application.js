@@ -1,10 +1,10 @@
 /* -----------> Import <------------*/
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-
+import useApplicationData from "hooks/useApplicationData";
 import {
   getAppointmentsForDay,
   getInterview,
@@ -13,55 +13,15 @@ import {
 
 /* -----------> App function <------------*/
 export default function Application(props) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {
-      1: {
-        id: 1,
-        time: "12pm",
-        interview: null,
-      },
-    },
-    interviewers: {},
-  });
-
-  /*--------->Making New Appointment <--------*/
-  const bookInterview = (id, interview) => {
-    // console.log("Id", id, interview);
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    return axios.put(`/api/appointments/${id}`, { interview }).then((res) => {
-      setState({
-        ...state,
-        appointments,
-      });
-      // console.log("resAxios", res);
-    });
-  };
-  /*--------->Cancel an Appointment <--------*/
-  const cancelInterview = (id) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = { ...state.appointments, [id]: appointment };
-    return axios.delete(`/api/appointments/${id}`).then((res) => {
-      setState({
-        ...state,
-        appointments,
-      });
-      // console.log("resAxios", res);
-    });
-  };
+  const {
+    state,
+    setState,
+    setDay,
+    bookInterview,
+    cancelInterview,
+    isLoading,
+    setIsLoading,
+  } = useApplicationData();
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
@@ -70,6 +30,7 @@ export default function Application(props) {
     return (
       <Appointment
         key={app.id}
+        {...app}
         id={app.id}
         time={app.time}
         interview={interview}
@@ -81,7 +42,6 @@ export default function Application(props) {
   });
   //console.log("daily", dailyAppointments);
 
-  const setDay = (day) => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }))
 
   useEffect(() => {
