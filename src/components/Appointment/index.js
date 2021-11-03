@@ -37,6 +37,7 @@ export default function Appointment(props) {
   const onCancel = () => {
     back();
   };
+
   //   -------- Save ----------
   const save = (name, interviewer) => {
     const newInterview = {
@@ -55,6 +56,7 @@ export default function Appointment(props) {
         }
       });
   };
+
   //   -------- Delete ----------
   const deleteAppointment = () => {
     transition(CONFIRM);
@@ -72,6 +74,7 @@ export default function Appointment(props) {
         }
       });
   };
+
   //   -------- Edit ----------
   const editAppointment = () => {
     transition(EDIT);

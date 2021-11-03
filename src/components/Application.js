@@ -13,6 +13,7 @@ import {
 
 /* -----------> App function <------------*/
 export default function Application(props) {
+  // -----> use custom hook useApplicationData <----- //
   const {
     state,
     setState,
@@ -42,8 +43,6 @@ export default function Application(props) {
   });
   //console.log("daily", dailyAppointments);
 
-  // const setDays = days => setState(prev => ({ ...prev, days }))
-
   useEffect(() => {
     axios
       .all([
@@ -55,8 +54,6 @@ export default function Application(props) {
       .then((resArr) => {
         // console.log("res", resArr);
         setIsLoading(false);
-        // setState((state.days = resArr[0].data));
-        // setState((state.appointments = resArr[1].data));
         setState((prevState) => ({
           ...prevState,
           days: resArr[0].data,
@@ -64,8 +61,10 @@ export default function Application(props) {
           interviewers: resArr[2].data,
         }));
       })
+
       .catch((err) => console.log(err));
   }, []);
+
   //console.log("state", state.days, state.appointments);
   if (isLoading) {
     return (
@@ -74,6 +73,7 @@ export default function Application(props) {
       </section>
     );
   }
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -94,7 +94,6 @@ export default function Application(props) {
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
       </section>
 
       <section className="schedule">

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Empty(Props) {
   return (
@@ -12,3 +13,7 @@ export default function Empty(Props) {
     </main>
   );
 }
+
+Empty.propTypes = {
+  onAdd: PropTypes.func,
+};

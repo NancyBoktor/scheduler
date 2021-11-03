@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Status(Props) {
   return (
@@ -12,3 +13,7 @@ export default function Status(Props) {
     </main>
   );
 }
+
+Status.propTypes = {
+  message: PropTypes.string.isRequired,
+};

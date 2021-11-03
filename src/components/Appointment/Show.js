@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export default function Show(props) {
   return (
     <main className="appointment__card appointment__card--show">
@@ -29,3 +29,9 @@ export default function Show(props) {
     </main>
   );
 }
+Show.propTypes = {
+  student: PropTypes.string,
+  interviewer: PropTypes.object,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+};
