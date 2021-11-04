@@ -28,10 +28,10 @@ User are able to edit his appointment.
 ![User are able to edit his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Editing-Name&Interviewer.gif?raw=true)
 
 User are able to delete his appointment.
-![User are able to delete his appointment.](https://user-images.githubusercontent.com/87666247/140241527-fd91b74d-db33-4f9a-83ab-738e7a73f1f5.gif)
+![User are able to delete his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Deleting-Appointment.gif?raw=true)
 
 The Application throws an error.
-![The Application throws an error.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Save-Error.gif?raw=true)
+![The Application throws an error.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Save-Error.gif.png?raw=true)
 
 ## Tech Stack
 
