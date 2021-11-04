@@ -19,18 +19,23 @@ A React interview scheduler App for booking, editing and canceling interviews fo
 ## Final product
 
 User are able to select each day.
+
 ![User are able to select each day.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Select-Day.gif?raw=true)
 
 User are able to create a new appointment.
+
 ![User are able to create a new appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Create-newAppointment.gif?raw=true)
 
 User are able to edit his appointment.
+
 ![User are able to edit his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Editing-Name&Interviewer.gif?raw=true)
 
 User are able to delete his appointment.
+
 ![User are able to delete his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Deleting-Appointment.gif?raw=true)
 
 The Application throws an error.
+
 ![The Application throws an error.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Save-Error.gif.png?raw=true)
 
 ## Tech Stack
