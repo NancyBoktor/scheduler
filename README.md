@@ -20,15 +20,15 @@ A React interview scheduler App for booking, editing and canceling interviews fo
 
 User are able to select each day.
 
-![User are able to select each day.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Select-Day.gif?raw=true)
+![User are able to select each day.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Select-Days.gif?raw=true)
 
 User are able to create a new appointment.
 
-![User are able to create a new appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Create-newAppointment.gif?raw=true)
+![User are able to create a new appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Create-Appointment.gif?raw=true)
 
 User are able to edit his appointment.
 
-![User are able to edit his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Editing-Name&Interviewer.gif?raw=true)
+![User are able to edit his appointment.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Editing-Appointment.gif?raw=true)
 
 User are able to delete his appointment.
 
@@ -36,7 +36,11 @@ User are able to delete his appointment.
 
 The Application throws an error.
 
-![The Application throws an error.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Save-Error.gif.png?raw=true)
+![The Application throws an error.](https://github.com/NancyBoktor/scheduler/blob/master/docs/Errors.gif?raw=true)
+
+No Reamaining Spots.
+
+![No Reamaining Spots.](https://github.com/NancyBoktor/scheduler/blob/master/docs/No-Reamaining-Spots.gif?raw=true)
 
 ## Tech Stack
 
@@ -47,7 +51,7 @@ The Application throws an error.
 5. Jest
 6. Cypress
 
-## Dependencies 
+## Dependencies
 
 - axios
 - classnames
