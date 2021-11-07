@@ -14,7 +14,8 @@ const useApplicationData = () => {
 
   /*--------->Updating The Spots <--------*/
   function updateSpots(newAppointments) {
-    return state.days.map((eachDay) => {
+    const newState = { ...state };
+    return newState.days.map((eachDay) => {
       let freeSpots = 0;
       for (const key of eachDay.appointments) {
         if (!newAppointments[key].interview) freeSpots++;
@@ -25,7 +26,6 @@ const useApplicationData = () => {
 
   /*--------->Making New Appointment <--------*/
   const bookInterview = (id, interview) => {
-    // console.log("Id", id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -43,7 +43,6 @@ const useApplicationData = () => {
         appointments,
         days: updateSpots(appointments),
       });
-      // console.log("resAxios", res);
     });
   };
 
@@ -60,7 +59,6 @@ const useApplicationData = () => {
         appointments,
         days: updateSpots(appointments),
       });
-      // console.log("resAxios", res);
     });
   };
   return {

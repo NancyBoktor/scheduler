@@ -55,7 +55,7 @@ export default function Appointment(props) {
       })
       .catch((err) => {
         if (err) {
-          transition(ERROR_SAVE);
+          transition(ERROR_SAVE, true);
         }
       });
   };
@@ -121,7 +121,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error message="Could not save appointment." onClose={onCancel} />
+        <Error message="Could not save appointment." onClose={() => back()} />
       )}
       {mode === ERROR_DELETE && (
         <Error message="Could not delete appointment." onClose={onCancel} />
